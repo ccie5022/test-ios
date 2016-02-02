@@ -1,0 +1,7 @@
+---
+- hosts: ios
+  gather_facts: no
+  connection: local
+
+  roles:
+    - { role: test_ios_template, delegate_to: virl, tags: ['ios_template']  }

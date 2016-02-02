@@ -1,0 +1,35 @@
+---
+- debug: msg="START cli/force.yaml"
+
+- name: setup
+  ios_config:
+    commands:
+      - no interface Loopback999
+    force: yes
+    provider: "{{ cli }}"
+
+- name: configure device with config
+  ios_template:
+    src: basic/config.j2
+    provider: "{{ cli }}"
+    force: yes
+  register: result
+
+- assert:
+    that:
+      - "result.changed == true"
+      - "result.commands is defined"
+
+- name: check device with config
+  ios_template:
+    src: basic/config.j2
+    provider: "{{ cli }}"
+    force: yes
+  register: result
+
+- assert:
+    that:
+      - "result.changed == true"
+      - "result.commands is defined"
+
+- debug: msg="END cli/force.yaml"
