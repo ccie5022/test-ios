@@ -4,4 +4,5 @@
   connection: local
 
   roles:
+    - { role: test_ios_config, delegate_to: virl, tags: ['ios_config']  }
     - { role: test_ios_template, delegate_to: virl, tags: ['ios_template']  }
