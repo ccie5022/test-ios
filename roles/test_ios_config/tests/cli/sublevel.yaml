@@ -3,13 +3,13 @@
 
 - name: setup test
   ios_config:
-    commands: ['no ip access-list extended test']
+    lines: ['no ip access-list extended test']
     provider: "{{ cli }}"
     force: yes
 
 - name: configure sub level command
   ios_config:
-    commands: ['permit ip any any log']
+    lines: ['permit ip any any log']
     parents: ['ip access-list extended test']
     provider: "{{ cli }}"
   register: result
@@ -17,12 +17,12 @@
 - assert:
     that:
       - "result.changed == true"
-      - "'ip access-list extended test' in result.commands"
-      - "'permit ip any any log' in result.commands"
+      - "'ip access-list extended test' in result.lines"
+      - "'permit ip any any log' in result.lines"
 
 - name: configure sub level command idempotent check
   ios_config:
-    commands: ['permit ip any any log']
+    lines: ['permit ip any any log']
     parents: ['ip access-list extended test']
     provider: "{{ cli }}"
   register: result

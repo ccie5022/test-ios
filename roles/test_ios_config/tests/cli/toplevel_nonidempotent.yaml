@@ -3,13 +3,13 @@
 
 - name: setup test
   ios_config:
-    commands: ['hostname {{ inventory_hostname }}']
+    lines: ['hostname {{ inventory_hostname }}']
     provider: "{{ cli }}"
     force: yes
 
 - name: configure top level command
   ios_config:
-    commands: ['hostname foo']
+    lines: ['hostname foo']
     provider: "{{ cli }}"
     match: strict
   register: result
@@ -17,11 +17,11 @@
 - assert:
     that:
       - "result.changed == true"
-      - "'hostname foo' in result.commands"
+      - "'hostname foo' in result.lines"
 
 - name: configure top level command idempotent check
   ios_config:
-    commands: ['hostname foo']
+    lines: ['hostname foo']
     provider: "{{ cli }}"
     match: strict
   register: result

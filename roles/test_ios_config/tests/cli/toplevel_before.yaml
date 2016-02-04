@@ -3,7 +3,7 @@
 
 - name: setup test
   ios_config:
-    commands:
+    lines:
       - "snmp-server contact ansible"
       - "hostname {{ inventory_hostname }}"
     provider: "{{ cli }}"
@@ -11,7 +11,7 @@
 
 - name: configure top level command with before
   ios_config:
-    commands: ['hostname foo']
+    lines: ['hostname foo']
     before: ['snmp-server contact bar']
     provider: "{{ cli }}"
   register: result
@@ -19,12 +19,12 @@
 - assert:
     that:
       - "result.changed == true"
-      - "'hostname foo' in result.commands"
-      - "'snmp-server contact bar' in result.commands"
+      - "'hostname foo' in result.lines"
+      - "'snmp-server contact bar' in result.lines"
 
 - name: configure top level command with before idempotent check
   ios_config:
-    commands: ['hostname foo']
+    lines: ['hostname foo']
     before: ['snmp-server contact foo']
     provider: "{{ cli }}"
   register: result

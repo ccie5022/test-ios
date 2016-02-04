@@ -3,7 +3,7 @@
 
 - name: setup test
   ios_config:
-    commands:
+    lines:
       - permit ip host 1.1.1.1 any log
       - permit ip host 2.2.2.2 any log
       - permit ip host 3.3.3.3 any log
@@ -15,7 +15,7 @@
 
 - name: configure sub level command using block resplace
   ios_config:
-    commands:
+    lines:
       - permit ip host 1.1.1.1 any log
       - permit ip host 2.2.2.2 any log
       - permit ip host 3.3.3.3 any log
@@ -29,15 +29,15 @@
 - assert:
     that:
       - "result.changed == true"
-      - "'ip access-list extended test' in result.commands"
-      - "'permit ip host 1.1.1.1 any log' in result.commands"
-      - "'permit ip host 2.2.2.2 any log' in result.commands"
-      - "'permit ip host 3.3.3.3 any log' in result.commands"
-      - "'permit ip host 4.4.4.4 any log' in result.commands"
+      - "'ip access-list extended test' in result.lines"
+      - "'permit ip host 1.1.1.1 any log' in result.lines"
+      - "'permit ip host 2.2.2.2 any log' in result.lines"
+      - "'permit ip host 3.3.3.3 any log' in result.lines"
+      - "'permit ip host 4.4.4.4 any log' in result.lines"
 
 - name: check sub level command using block replace
   ios_config:
-    commands:
+    lines:
       - permit ip host 1.1.1.1 any log
       - permit ip host 2.2.2.2 any log
       - permit ip host 3.3.3.3 any log
