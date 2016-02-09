@@ -29,11 +29,11 @@
 - assert:
     that:
       - "result.changed == true"
-      - "'ip access-list extended test' in result.lines"
-      - "'permit ip host 1.1.1.1 any log' in result.lines"
-      - "'permit ip host 2.2.2.2 any log' in result.lines"
-      - "'permit ip host 3.3.3.3 any log' in result.lines"
-      - "'permit ip host 4.4.4.4 any log' in result.lines"
+      - "'ip access-list extended test' in result.updates"
+      - "'permit ip host 1.1.1.1 any log' in result.updates"
+      - "'permit ip host 2.2.2.2 any log' in result.updates"
+      - "'permit ip host 3.3.3.3 any log' in result.updates"
+      - "'permit ip host 4.4.4.4 any log' in result.updates"
 
 - name: check sub level command using block replace
   ios_config:

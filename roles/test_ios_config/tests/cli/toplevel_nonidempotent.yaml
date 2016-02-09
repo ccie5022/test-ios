@@ -17,7 +17,7 @@
 - assert:
     that:
       - "result.changed == true"
-      - "'hostname foo' in result.lines"
+      - "'hostname foo' in result.updates"
 
 - name: configure top level command idempotent check
   ios_config:

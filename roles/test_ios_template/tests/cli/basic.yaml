@@ -18,7 +18,7 @@
 - assert:
     that:
       - "result.changed == true"
-      - "result.commands is defined"
+      - "result.updates is defined"
 
 - name: check device with config
   ios_template:
@@ -29,6 +29,6 @@
 - assert:
     that:
       - "result.changed == false"
-      - "result.commands is defined"
+      - "result.updates is defined"
 
 - debug: msg="END cli/basic.yaml"

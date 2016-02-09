@@ -17,8 +17,8 @@
 - assert:
     that:
       - "result.changed == true"
-      - "'ip access-list extended test' in result.lines"
-      - "'permit ip any any log' in result.lines"
+      - "'ip access-list extended test' in result.updates"
+      - "'permit ip any any log' in result.updates"
 
 - name: configure sub level command idempotent check
   ios_config:

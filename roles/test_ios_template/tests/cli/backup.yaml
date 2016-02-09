@@ -32,7 +32,7 @@
 - assert:
     that:
       - "result.changed == true"
-      - "result.commands is defined"
+      - "result.updates is defined"
 
 - name: collect any backup files
   find:
