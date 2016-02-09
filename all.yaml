@@ -3,6 +3,15 @@
   gather_facts: no
   connection: local
 
+  vars:
+    testcase: "{{ test_case | default('') }}"
+    limitto: "{{ limit_to | default('') }}"
+    test_cases:
+        - files: []
+    debug: True
+
   roles:
-    - { role: test_ios_config, delegate_to: virl, tags: ['ios_config']  }
-    - { role: test_ios_template, delegate_to: virl, tags: ['ios_template']  }
+    - { role: test_ios_config, delegate_to: virl, when: limitto == 'config' or limitto == ''  }
+    - { role: test_ios_template, delegate_to: virl, when: limitto == 'template' or limitto == '' }
+    - { role: test_ios_command, delegate_to: virl, when: limitto == 'command' or limitto == '' }
+
