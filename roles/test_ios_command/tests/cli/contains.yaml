@@ -18,6 +18,6 @@
 - assert:
     that:
       - "result.changed == false"
-      - "result.result is defined"
+      - "result.stdout is defined"
 
 - debug: msg="END cli/contains.yaml"
